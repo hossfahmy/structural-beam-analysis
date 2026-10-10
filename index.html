@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f2">
+  <title>Beamline — Structural Beam Analysis</title>
+  <style>
+    :root{--ink:#17251f;--muted:#65736c;--line:#dce3dd;--paper:#fff;--canvas:#f5f6f2;--green:#176b50;--green-dark:#104b39;--green-pale:#e8f3ed;--orange:#cb7143;--blue:#527a9b;--purple:#8165a8;--shadow:0 12px 32px #203b2a0d}
+    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1320px;margin:auto;padding:0 34px 46px}.topbar{height:78px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center;font-weight:750;letter-spacing:-.04em;font-size:20px}.brandmark{width:34px;height:34px;background:var(--green);border-radius:10px;display:grid;place-items:center;color:white}.brandmark svg{width:21px}.top-note{font-size:13px;color:var(--muted)}.hero{padding:35px 0 25px}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:750;color:var(--green)}h1{font-size:clamp(28px,3.4vw,42px);letter-spacing:-.055em;line-height:1.1;margin:8px 0 10px}.hero p{margin:0;color:var(--muted);max-width:680px}.layout{display:grid;grid-template-columns:350px minmax(0,1fr);align-items:start;gap:22px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.inputs{padding:21px;position:sticky;top:16px}.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.panel-head h2{font-size:16px;margin:0;letter-spacing:-.02em}.section-label{font-size:11px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:20px 0 12px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field label{display:flex;justify-content:space-between;font-size:12px;font-weight:650;color:#46544d;margin-bottom:6px}.unit{font-weight:500;color:#829087}.control{height:42px;display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;background:#fff;padding:0 10px;transition:.15s}.control:focus-within{border-color:#72a68f;box-shadow:0 0 0 3px #176b5018}.control input{border:0;outline:0;min-width:0;width:100%;color:var(--ink);background:transparent;font-variant-numeric:tabular-nums}.control select{border:0;outline:0;width:100%;background:transparent;color:var(--ink)}.loads-head{display:flex;align-items:center;justify-content:space-between;margin:21px 0 10px}.loads-head .section-label{margin:0}.button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 10px;color:var(--ink);font-size:12px;font-weight:650}.button:hover{border-color:#9cb9aa;background:#f7faf8}.button.primary{background:var(--green);border-color:var(--green);color:white}.button.primary:hover{background:var(--green-dark)}.button.icon{width:30px;height:30px;padding:0;display:grid;place-items:center;font-size:17px;color:#748078}.load-list{display:grid;gap:9px}.load-card{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fcfdfb}.load-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}.load-type{font-size:12px;font-weight:750;display:flex;align-items:center;gap:7px}.load-dot{width:8px;height:8px;border-radius:50%;background:var(--orange)}.load-card.distributed .load-dot{background:var(--blue)}.load-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}.load-fields .field label{font-size:11px}.load-fields .control{height:36px;padding:0 8px}.load-fields input{font-size:13px}.empty-loads{border:1px dashed #cdd7cf;border-radius:10px;text-align:center;color:var(--muted);padding:17px 9px;font-size:12px}.small-help{font-size:11px;color:var(--muted);margin:9px 0 0}.analyze{width:100%;height:45px;margin-top:19px;font-size:13px}.right{display:grid;gap:15px}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{padding:15px 17px}.metric-label{font-size:11px;color:var(--muted);font-weight:650}.metric-value{font-size:24px;font-weight:730;letter-spacing:-.04em;margin:5px 0 0;font-variant-numeric:tabular-nums}.metric-unit{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0}.diagram{padding:16px 18px 11px}.diagram-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.diagram-title{font-weight:720;font-size:14px}.diagram-subtitle{font-size:11px;color:var(--muted);margin-top:2px}.legend{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:10px}.legend-line{width:15px;height:2px;background:var(--green)}.diagram svg{display:block;width:100%;height:154px;overflow:visible;margin-top:3px}.diagram:first-child svg{height:185px}.gridline{stroke:#e8ede9;stroke-width:1}.axis{stroke:#aebbb2;stroke-width:1.2}.curve{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.area{fill:#176b5014}.zero{stroke:#9caaa1;stroke-width:1.1;stroke-dasharray:4 4}.tick{fill:#859189;font-size:9px}.plot-label{fill:#43534a;font-size:10px;font-weight:650}.beam{stroke:#4e5e55;stroke-width:4;stroke-linecap:round}.support{fill:#e6ede8;stroke:#6f8076;stroke-width:1}.load-arrow{stroke:var(--orange);stroke-width:1.7;fill:none}.load-arrow.udl{stroke:var(--blue)}.load-text{font-size:9px;fill:#73503e;font-weight:650}.load-text.udl{fill:#45677e}.reaction-arrow{stroke:var(--green);stroke-width:1.7;fill:none}.reaction-text{font-size:9px;fill:var(--green);font-weight:700}.range-tag{background:var(--green-pale);color:var(--green);font-size:10px;font-weight:700;border-radius:99px;padding:4px 8px;white-space:nowrap}.notice{font-size:11px;color:var(--muted);padding:5px 3px}.footer{margin-top:22px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:12px}.error{display:none;background:#fff1ed;border:1px solid #f0c5b6;border-radius:9px;padding:10px 12px;color:#984b31;font-size:12px;margin-top:12px}.error.show{display:block}
+    .unit-select{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:12px;font-weight:650}.support-card{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fcfdfb}.support-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}.support-fields .field label{font-size:11px}.support-fields .control{height:36px;padding:0 8px}.support-fields input,.support-fields select{font-size:13px}.support-card .load-top{margin-bottom:8px}.table-wrap{overflow-x:auto}.reaction-table{width:100%;border-collapse:collapse;font-size:12px}.reaction-table th,.reaction-table td{text-align:right;padding:9px 11px;border-bottom:1px solid #edf0ed;font-variant-numeric:tabular-nums}.reaction-table th:first-child,.reaction-table td:first-child{text-align:left}.reaction-table th{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em}.reaction-table tr:last-child td{border-bottom:0}.reaction-type{color:var(--muted)}.mode-note{font-size:11px;color:var(--muted);margin:-7px 0 0}
+    @media(max-width:900px){.layout{grid-template-columns:300px minmax(0,1fr);gap:14px}.shell{padding-left:20px;padding-right:20px}.metric{padding:13px}.metric-value{font-size:20px}}
+    @media(max-width:720px){.shell{padding:0 14px 30px}.topbar{height:64px}.top-note{display:none}.hero{padding:27px 0 21px}.layout{grid-template-columns:1fr}.inputs{position:static}.right{gap:11px}.metric-row{gap:8px}.metric{padding:11px}.metric-value{font-size:18px}.metric-unit{font-size:10px}.diagram{padding:14px 12px 8px}.diagram svg{height:135px}.diagram:first-child svg{height:155px}.footer{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brandmark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17h18M5 17l2-7h10l2 7M12 10V6m-2 0h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="19" r="1" fill="currentColor"/><circle cx="17" cy="19" r="1" fill="currentColor"/></svg></span>beamline</div>
+      <div style="display:flex;align-items:center;gap:12px"><div class="top-note">A clear view of how your beam responds.</div><label class="unit-select-label" for="unit-system" style="font-size:11px;color:var(--muted)">Units</label><select id="unit-system" class="unit-select"><option value="metric">Metric</option><option value="english">English</option></select></div>
+    </header>
+    <section class="hero"><div class="eyebrow">Structural calculator</div><h1>Beam analysis</h1><p>Set span, supports, and loads to see reactions, shear force, bending moment, and elastic deflection for simply supported, continuous, or cantilever beams.</p></section>
+    <main class="layout">
+      <section class="panel inputs" aria-labelledby="inputs-title">
+        <div class="panel-head"><h2 id="inputs-title">Beam setup</h2></div>
+        <div class="section-label">Geometry &amp; stiffness</div>
+        <div class="field-grid">
+          <div class="field"><label for="span">Span <span class="unit" data-unit="length">ft</span></label><div class="control"><input id="span" type="number" min="0.01" step="any" value="19.68503937"></div></div>
+          <div class="field"><label for="elasticity">Elastic modulus, E <span class="unit" data-unit="modulus">ksi</span></label><div class="control"><input id="elasticity" type="number" min="0.001" step="any" value="29007.5475"></div></div>
+          <div class="field"><label for="inertia">Second moment, I <span class="unit" data-unit="inertia">in⁴</span></label><div class="control"><input id="inertia" type="number" min="0.001" step="any" value="192.2"></div></div>
+          <div class="field"><label for="samples">Plot resolution <span class="unit">points</span></label><div class="control"><select id="samples"><option value="81">81</option><option value="121" selected>121</option><option value="201">201</option></select></div></div>
+        </div>
+        <div class="field" style="margin-top:12px"><label for="beam-model">Beam model</label><div class="control"><select id="beam-model"><option value="simple">Simply supported</option><option value="cantilever">Cantilever (fixed at left)</option><option value="custom">Custom supports</option></select></div></div>
+        <div class="loads-head"><div class="section-label">Supports</div><button class="button" id="add-support" type="button">＋ Add support</button></div>
+        <div class="support-list load-list" id="support-list"></div>
+        <p class="small-help" id="support-help">Pin and roller supports restrain vertical movement. A fixed support also restrains rotation.</p>
+        <div class="loads-head"><div class="section-label">Applied loads</div><div style="display:flex;gap:6px"><button class="button" id="add-point" type="button">＋ Point</button><button class="button" id="add-distributed" type="button">＋ Distributed</button></div></div>
+        <div class="load-list" id="load-list"></div>
+        <p class="small-help">Loads act downward. Distances are measured from the left support.</p>
+        <div class="error" id="error" role="alert"></div>
+        <button class="button primary analyze" id="analyze" type="button">Update analysis</button>
+      </section>
+      <section class="right" aria-label="Analysis results">
+        <div class="metric-row">
+          <div class="panel metric"><div class="metric-label">Maximum shear</div><div class="metric-value" id="max-shear">— <span class="metric-unit">kN</span></div></div>
+          <div class="panel metric"><div class="metric-label">Maximum moment</div><div class="metric-value" id="max-moment">— <span class="metric-unit">kN·m</span></div></div>
+          <div class="panel metric"><div class="metric-label">Maximum deflection</div><div class="metric-value" id="max-deflection">— <span class="metric-unit">mm</span></div></div>
+        </div>
+        <div class="panel diagram"><div class="diagram-head"><div><div class="diagram-title">Beam &amp; support reactions</div><div class="diagram-subtitle">Applied loads and support locations</div></div><div class="legend"><span class="legend-line" style="background:var(--orange)"></span>Load <span class="legend-line"></span>Reaction</div></div><svg id="beam-plot" role="img" aria-label="Beam load and support reaction diagram"></svg></div>
+        <div class="panel diagram"><div class="diagram-head"><div><div class="diagram-title">Support reactions</div><div class="diagram-subtitle">Vertical forces and fixed-end moments</div></div></div><div class="table-wrap"><table class="reaction-table"><thead><tr><th>Support</th><th>Type</th><th>Position</th><th>Vertical reaction</th><th>Reaction moment</th></tr></thead><tbody id="reaction-rows"></tbody></table></div></div>
+        <div class="panel diagram"><div class="diagram-head"><div><div class="diagram-title">Shear force</div><div class="diagram-subtitle">Internal vertical force along the span</div></div><span class="range-tag" id="shear-peak">Peak —</span></div><svg id="shear-plot" role="img" aria-label="Shear force diagram"></svg></div>
+        <div class="panel diagram"><div class="diagram-head"><div><div class="diagram-title">Bending moment</div><div class="diagram-subtitle">Positive moment produces sagging curvature</div></div><span class="range-tag" id="moment-peak">Peak —</span></div><svg id="moment-plot" role="img" aria-label="Bending moment diagram"></svg></div>
+        <div class="panel diagram"><div class="diagram-head"><div><div class="diagram-title">Elastic deflection</div><div class="diagram-subtitle">Euler–Bernoulli beam, constant E and I</div></div><span class="range-tag" id="deflection-peak">Peak —</span></div><svg id="deflection-plot" role="img" aria-label="Beam deflection diagram"></svg></div>
+        <div class="notice">Idealized Euler–Bernoulli model: prismatic beam with constant E and I, small deflection, rigid supports, and downward vertical loading. Pin/roller horizontal reactions, axial effects, and shear deformation are omitted. Use results for learning and preliminary checks; verify designs to the applicable code.</div>
+      </section>
+    </main>
+    <footer class="footer"><span>Sign convention: downward loads are positive; sagging bending moment is positive.</span><span>Deflection uses the specified E and I.</span></footer>
+  </div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id), NS = 'http://www.w3.org/2000/svg';
+  const loadList=$('load-list'),supportList=$('support-list');
+  const units={
+    metric:{length:'m',force:'kN',line:'kN/m',modulus:'GPa',inertia:'cm⁴',moment:'kN·m',deflection:'mm',lenToM:1,forceToN:1000,modulusToPa:1e9,inertiaToM4:1e-8,deflectionFromM:1000,momentFromNm:1000},
+    english:{length:'ft',force:'kip',line:'kip/ft',modulus:'ksi',inertia:'in⁴',moment:'kip·ft',deflection:'in',lenToM:.3048,forceToN:4448.2216152605,modulusToPa:6894757.293168,inertiaToM4:4.162314256e-7,deflectionFromM:39.3700787402,momentFromNm:1355.8179483314}
+  };
+  let system='english',loadId=0,supportId=0,customSupports=null;
+  const unit=()=>units[system];
+  const fmt=(v,d=2)=>Number.isFinite(v)?new Intl.NumberFormat(undefined,{maximumFractionDigits:d,minimumFractionDigits:0}).format(v):'—';
+  const val=(root,key)=>Number(root.querySelector(`[data-key="${key}"]`)?.value);
+  function applyUnitLabels(){
+    document.querySelectorAll('[data-unit]').forEach(e=>{e.textContent=unit()[e.dataset.unit]||e.textContent;});
+    document.querySelectorAll('[data-load-unit]').forEach(e=>{e.textContent=unit()[e.dataset.loadUnit];});
+  }
+  function addLoad(type,load={}){
+    const distributed=type==='distributed',card=document.createElement('div');card.className=`load-card${distributed?' distributed':''}`;card.dataset.type=type;card.dataset.id=++loadId;
+    const q=load.q??5*unit().forceToN/unit().lenToM,p=load.P??10*unit().forceToN,spanNow=Math.max(.01,Number($('span').value)||6),a=load.a??spanNow*(distributed ? .25 : .5)*unit().lenToM,b=load.b??spanNow*.75*unit().lenToM;
+    const distUnit=unit().lenToM,forceUnit=unit().forceToN;
+    card.innerHTML=`<div class="load-top"><div class="load-type"><span class="load-dot"></span>${distributed?'Uniform distributed load':'Point load'}</div><button type="button" class="button icon remove" aria-label="Remove load">×</button></div><div class="load-fields">${distributed?`
+      <div class="field"><label>Intensity <span class="unit" data-load-unit="line">${unit().line}</span></label><div class="control"><input data-key="q" type="number" min="0" step="any" value="${load.q!==undefined?q*unit().lenToM/unit().forceToN:q*unit().lenToM/unit().forceToN}"></div></div>
+      <div class="field"><label>Start, x₁ <span class="unit" data-load-unit="length">${unit().length}</span></label><div class="control"><input data-key="a" type="number" min="0" step="any" value="${load.a!==undefined?a/distUnit:1}"></div></div>
+      <div class="field"><label>End, x₂ <span class="unit" data-load-unit="length">${unit().length}</span></label><div class="control"><input data-key="b" type="number" min="0" step="any" value="${load.b!==undefined?b/distUnit:Math.min(5,6)}"></div></div>`:`
+      <div class="field"><label>Magnitude <span class="unit" data-load-unit="force">${unit().force}</span></label><div class="control"><input data-key="P" type="number" min="0" step="any" value="${load.P!==undefined?p/forceUnit:10}"></div></div>
+      <div class="field"><label>Position, x <span class="unit" data-load-unit="length">${unit().length}</span></label><div class="control"><input data-key="a" type="number" min="0" step="any" value="${load.a!==undefined?a/distUnit:3}"></div></div>`}</div>`;
+    loadList.append(card);
+  }
+  function addSupport(s={}){
+    const card=document.createElement('div');card.className='support-card';card.dataset.id=++supportId;
+    card.innerHTML=`<div class="load-top"><div class="load-type"><span class="load-dot" style="background:var(--green)"></span>Support</div><button type="button" class="button icon remove" aria-label="Remove support">×</button></div><div class="support-fields"><div class="field"><label>Position, x <span class="unit" data-load-unit="length">${unit().length}</span></label><div class="control"><input data-key="x" type="number" min="0" step="any" value="${s.x!==undefined?s.x/unit().lenToM:3}"></div></div><div class="field"><label>Type</label><div class="control"><select data-key="type"><option value="pin" ${s.type==='pin'?'selected':''}>Pin</option><option value="roller" ${s.type==='roller'?'selected':''}>Roller</option><option value="fixed" ${s.type==='fixed'?'selected':''}>Fixed</option></select></div></div></div>`;
+    supportList.append(card);
+  }
+  function modelSupports(){
+    const L=Number($('span').value)*unit().lenToM,model=$('beam-model').value;
+    if(model==='simple')return [{x:0,type:'pin'},{x:L,type:'roller'}];
+    if(model==='cantilever')return [{x:0,type:'fixed'}];
+    return [...supportList.querySelectorAll('.support-card')].map(c=>({x:val(c,'x')*unit().lenToM,type:c.querySelector('[data-key="type"]').value}));
+  }
+  function stateFromInputs(){
+    const model=$('beam-model').value,loads=[...loadList.querySelectorAll('.load-card')].map(c=>c.dataset.type==='point'?{type:'point',P:val(c,'P')*unit().forceToN,a:val(c,'a')*unit().lenToM}:{type:'distributed',q:val(c,'q')*unit().forceToN/unit().lenToM,a:val(c,'a')*unit().lenToM,b:val(c,'b')*unit().lenToM});
+    const supports=modelSupports();if(model==='custom')customSupports=supports;
+    return {L:Number($('span').value)*unit().lenToM,E:Number($('elasticity').value)*unit().modulusToPa,I:Number($('inertia').value)*unit().inertiaToM4,n:Number($('samples').value),model,supports,loads};
+  }
+  function renderState(s){
+    const model=$('beam-model').value,original=unit();
+    $('span').value=s.L/original.lenToM;$('elasticity').value=s.E/original.modulusToPa;$('inertia').value=s.I/original.inertiaToM4;
+    if(model==='custom'){supportList.innerHTML='';(s.supports||customSupports||[]).forEach(addSupport);customSupports=s.supports||customSupports;}
+    loadList.innerHTML='';(s.loads||[]).forEach(l=>addLoad(l.type,l));
+    if(!s.loads?.length)loadList.innerHTML='<div class="empty-loads">No loads yet. Add a point or distributed load.</div>';
+    applyUnitLabels();
+  }
+  function ensureCustom(){
+    if($('beam-model').value==='custom')return;
+    const before=stateFromInputs();customSupports=before.supports.map(s=>({...s}));$('beam-model').value='custom';supportList.innerHTML='';customSupports.forEach(addSupport);$('support-help').textContent='Add supports at unique locations. At least one fixed support or two supports at different positions are needed.';
+  }
+  $('beam-model').addEventListener('change',()=>{
+    const mode=$('beam-model').value;supportList.innerHTML='';
+    if(mode==='custom'){
+      if(!customSupports)customSupports=[{x:0,type:'pin'},{x:Number($('span').value)*unit().lenToM,type:'roller'}];
+      customSupports.forEach(addSupport);$('support-help').textContent='Add supports at unique locations. At least one fixed support or two supports at different positions are needed.';
+    }else $('support-help').textContent=mode==='cantilever'?'A cantilever is fixed at the left end and free at the right end.':'Pin and roller supports are at the beam ends.';
+    analyze();
+  });
+  $('add-support').addEventListener('click',()=>{ensureCustom();addSupport({x:Number($('span').value)*unit().lenToM/2,type:'roller'});customSupports=stateFromInputs().supports;analyze();});
+  $('add-point').addEventListener('click',()=>{if(loadList.querySelector('.empty-loads'))loadList.innerHTML='';addLoad('point');analyze();});
+  $('add-distributed').addEventListener('click',()=>{if(loadList.querySelector('.empty-loads'))loadList.innerHTML='';addLoad('distributed');analyze();});
+  loadList.addEventListener('click',e=>{const b=e.target.closest('.remove');if(!b)return;b.closest('.load-card').remove();if(!loadList.querySelector('.load-card'))loadList.innerHTML='<div class="empty-loads">No loads yet. Add a point or distributed load.</div>';analyze();});
+  supportList.addEventListener('click',e=>{const b=e.target.closest('.remove');if(!b)return;b.closest('.support-card').remove();customSupports=stateFromInputs().supports;analyze();});
+  supportList.addEventListener('input',()=>{if($('beam-model').value==='custom')customSupports=stateFromInputs().supports;analyze();});
+  supportList.addEventListener('change',()=>{if($('beam-model').value==='custom')customSupports=stateFromInputs().supports;analyze();});
+  loadList.addEventListener('input',analyze);
+  document.querySelectorAll('#span,#elasticity,#inertia,#samples').forEach(e=>e.addEventListener('input',()=>{if($('beam-model').value==='custom')customSupports=stateFromInputs().supports;analyze();}));
+  $('unit-system').addEventListener('change',()=>{const s=stateFromInputs();system=$('unit-system').value;renderState(s);analyze();});
+  function validate(){
+    const s=stateFromInputs();
+    if(!(s.L>0&&s.E>0&&s.I>0))throw Error('Enter positive span, elastic modulus, and second moment of area values.');
+    if(s.loads.length>30||s.supports.length>20)throw Error('For a responsive analysis, use up to 30 loads and 20 supports.');
+    for(const l of s.loads){const nums=l.type==='point'?[l.P,l.a]:[l.q,l.a,l.b];if(!nums.every(Number.isFinite))throw Error('Enter a value for every load field.');if(l.type==='point'){if(l.P<0||l.a<0||l.a>s.L)throw Error('Point loads must be nonnegative and positioned within the span.');}else if(l.q<0||l.a<0||l.a>=l.b||l.b>s.L)throw Error('Distributed loads need nonnegative intensity and start/end positions within the span.');}
+    for(const p of s.supports)if(!Number.isFinite(p.x)||p.x<0||p.x>s.L)throw Error('Every support position must be within the beam span.');
+    const sorted=[...s.supports].sort((a,b)=>a.x-b.x);for(let i=1;i<sorted.length;i++)if(Math.abs(sorted[i].x-sorted[i-1].x)<s.L*1e-9)throw Error('Place each support at a unique position.');
+    if(!sorted.some(p=>p.type==='fixed')&&sorted.filter(p=>p.type==='pin'||p.type==='roller').length<2)throw Error('The beam is unstable: use a fixed support or at least two vertical supports.');
+    if(!sorted.some(p=>p.type==='fixed')&&sorted.every(p=>p.type==='pin'||p.type==='roller')&&sorted[0].x===sorted.at(-1).x)throw Error('Vertical supports must be at different locations.');
+    return s;
+  }
+  function solveLinear(A,b){
+    const n=b.length,band=4;
+    for(let k=0;k<n;k++){
+      const pivot=A[k][k];if(!Number.isFinite(pivot)||Math.abs(pivot)<1e-24)throw Error('The support arrangement is unstable or too close together.');
+      for(let i=k+1;i<Math.min(n,k+band);i++){const f=A[i][k]/pivot;if(f===0)continue;A[i][k]=0;for(let j=k+1;j<Math.min(n,k+band);j++)A[i][j]-=f*A[k][j];b[i]-=f*b[k];}
+    }
+    const x=new Float64Array(n);for(let i=n-1;i>=0;i--){let v=b[i];for(let j=i+1;j<Math.min(n,i+band);j++)v-=A[i][j]*x[j];x[i]=v/A[i][i];if(!Number.isFinite(x[i]))throw Error('Could not solve this support arrangement.');}return x;
+  }
+  function femSolve(s){
+    const xs=Array.from({length:s.n},(_,i)=>s.L*i/(s.n-1));
+    for(const p of s.supports)xs.push(p.x);for(const l of s.loads){if(l.type==='point')xs.push(l.a);else xs.push(l.a,l.b);}
+    xs.sort((a,b)=>a-b);const nodes=xs.filter((x,i)=>i===0||Math.abs(x-xs[i-1])>s.L*1e-10),N=nodes.length,nd=2*N;
+    if(N>300)throw Error('This mesh is too large. Reduce plot resolution or the number of loads.');
+    const K=Array.from({length:nd},()=>new Float64Array(nd)),F=new Float64Array(nd);
+    const add=(i,j,v)=>{K[i][j]+=v;};
+    for(let e=0;e<N-1;e++){
+      const a=nodes[e],b=nodes[e+1],le=b-a,fac=s.E*s.I/(le**3),l2=le*le;
+      const m=[[12,6*le,-12,6*le],[6*le,4*l2,-6*le,2*l2],[-12,-6*le,12,-6*le],[6*le,2*l2,-6*le,4*l2]],dofs=[2*e,2*e+1,2*e+2,2*e+3];
+      for(let i=0;i<4;i++)for(let j=0;j<4;j++)add(dofs[i],dofs[j],m[i][j]*fac);
+      const mid=(a+b)/2,q=s.loads.reduce((sum,l)=>sum+(l.type==='distributed'&&mid>=l.a-1e-10&&mid<=l.b+1e-10?l.q:0),0);
+      if(q){const fe=[q*le/2,q*l2/12,q*le/2,-q*l2/12];for(let i=0;i<4;i++)F[dofs[i]]+=fe[i];}
+    }
+    for(const l of s.loads)if(l.type==='point'){const ix=nodes.findIndex(x=>Math.abs(x-l.a)<s.L*1e-10);F[2*ix]+=l.P;}
+    const constrained=new Set(),supportNodes=[];
+    for(const p of s.supports){const ix=nodes.findIndex(x=>Math.abs(x-p.x)<s.L*1e-10);supportNodes.push({...p,index:ix});constrained.add(2*ix);if(p.type==='fixed')constrained.add(2*ix+1);}
+    const free=[];for(let i=0;i<nd;i++)if(!constrained.has(i))free.push(i);const map=new Int32Array(nd);map.fill(-1);free.forEach((d,i)=>map[d]=i);
+    const Kr=free.map(i=>{const row=new Float64Array(free.length);for(let j=0;j<nd;j++)if(map[j]>=0)row[map[j]]=K[i][j];return row;}),Fr=Float64Array.from(free,i=>F[i]);
+    const xr=solveLinear(Kr,Fr),D=new Float64Array(nd);free.forEach((d,i)=>D[d]=xr[i]);
+    const reactions=supportNodes.map(p=>{let rv=0,rm=0;const vi=2*p.index,ri=vi+1;for(let j=0;j<nd;j++){rv+=K[vi][j]*D[j];rm+=K[ri][j]*D[j];}rv-=F[vi];rm-=F[ri];return {...p,R:-rv,C:p.type==='fixed'?rm:0};});
+    return {nodes,D,reactions};
+  }
+  function internalAt(x,s,reactions){
+    let V=0,M=0;for(const r of reactions)if(x>=r.x-1e-12){V+=r.R;M+=r.R*(x-r.x)+r.C;}
+    for(const l of s.loads){if(l.type==='point'&&x>=l.a-1e-12){V-=l.P;M-=l.P*(x-l.a);}else if(l.type==='distributed'){const c=Math.max(0,Math.min(x,l.b)-l.a);V-=l.q*c;M-=l.q*c*c/2;}}
+    return {V,M};
+  }
+  function displacementAt(x,sol){
+    const nodes=sol.nodes,D=sol.D;if(x<=0)return D[0];if(x>=nodes.at(-1))return D[D.length-2];
+    let lo=0,hi=nodes.length-1;while(hi-lo>1){const mid=(lo+hi)>>1;if(nodes[mid]<=x)lo=mid;else hi=mid;}
+    const l=nodes[hi]-nodes[lo],t=(x-nodes[lo])/l,t2=t*t,t3=t2*t;
+    const N1=1-3*t2+2*t3,N2=l*(t-2*t2+t3),N3=3*t2-2*t3,N4=l*(-t2+t3),i=2*lo;
+    return N1*D[i]+N2*D[i+1]+N3*D[i+2]+N4*D[i+3];
+  }
+  function calculate(s){
+    const sol=femSolve(s),events=[...sol.reactions.map(r=>r.x),...s.loads.flatMap(l=>l.type==='point'?[l.a]:[l.a,l.b])],eps=Math.max(s.L*1e-7,1e-10),plotX=[];
+    for(let i=0;i<s.n;i++)plotX.push(s.L*i/(s.n-1));
+    for(const x of events)if(x>0)plotX.push(Math.max(0,x-eps));plotX.push(...events);plotX.sort((a,b)=>a-b);
+    const V=[],M=[],y=[];for(const x of plotX){const r=internalAt(x,s,sol.reactions);V.push(r.V);M.push(r.M);y.push(displacementAt(x,sol));}
+    return {...sol,x:plotX,V,M,y};
+  }
+  function svgEl(name,attrs={},text=''){const e=document.createElementNS(NS,name);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;return e;}
+  function plotBase(svg,L){
+    const W=820,H=svg.clientHeight||154,left=54,right=18,top=14,bottom=24,pw=W-left-right,ph=H-top-bottom;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();const X=x=>left+x/L*pw;
+    for(let i=0;i<=4;i++){const x=left+i*pw/4;svg.append(svgEl('line',{x1:x,y1:top,x2:x,y2:top+ph,class:'gridline'}));svg.append(svgEl('text',{x,y:H-6,'text-anchor':'middle',class:'tick'},fmt(L*i/4/unit().lenToM,2)));}
+    svg.append(svgEl('line',{x1:left,y1:top+ph,x2:left+pw,y2:top+ph,class:'axis'}));svg.append(svgEl('text',{x:left,y:10,class:'tick'},`x (${unit().length})`));return {W,H,left,top,pw,ph,X};
+  }
+  function drawBeam(s,sol){
+    const svg=$('beam-plot'),g=plotBase(svg,s.L),y=77,x0=g.left,x1=g.left+g.pw,scale=g.pw/s.L;svg.append(svgEl('line',{x1:x0,y1:y,x2:x1,y2:y,class:'beam'}));
+    sol.reactions.forEach((r,i)=>{const x=g.X(r.x);if(r.type==='fixed'){
+      const side=x<g.left+g.pw*.28?1:-1;svg.append(svgEl('rect',{x:x+(side>0?0:-10),y:y-15,width:10,height:30,fill:'#dce6df',stroke:'#65776c'}));for(let k=0;k<4;k++){const hy=y-12+k*8;svg.append(svgEl('line',{x1:x+(side>0?2:-8),y1:hy,x2:x+(side>0?8:-2),y2:hy+6,stroke:'#85958b','stroke-width':1}));}
+    }else{svg.append(svgEl('path',{d:`M ${x-9} ${y+17} L ${x} ${y+2} L ${x+9} ${y+17} Z`,class:'support'}));if(r.type==='roller'){svg.append(svgEl('circle',{cx:x-4,cy:y+20,r:2.1,class:'support'}));svg.append(svgEl('circle',{cx:x+4,cy:y+20,r:2.1,class:'support'}));}}
+      svg.append(svgEl('text',{x,y:y+33,'text-anchor':'middle',class:'tick'},`${String.fromCharCode(65+i)} · ${r.type}`));
+      const len=20,down=r.R<0,sy=down?y-3:y+25,ey=down?y-3+len:y+25-len,cls='reaction-arrow';svg.append(svgEl('line',{x1:x,y1:sy,x2:x,y2:ey,class:cls}));svg.append(svgEl('path',{d:down?`M ${x-4} ${ey-6} L ${x} ${ey} L ${x+4} ${ey-6}`:`M ${x-4} ${ey+6} L ${x} ${ey} L ${x+4} ${ey+6}`,class:cls}));
+    });
+    s.loads.forEach(l=>{if(l.type==='point'){const x=g.X(l.a);svg.append(svgEl('line',{x1:x,y1:y-42,x2:x,y2:y-7,class:'load-arrow'}));svg.append(svgEl('path',{d:`M ${x-4} ${y-14} L ${x} ${y-7} L ${x+4} ${y-14}`,class:'load-arrow'}));svg.append(svgEl('text',{x,y:y-47,'text-anchor':'middle',class:'load-text'},`${fmt(l.P/unit().forceToN,1)} ${unit().force}`));}else{const a=g.X(l.a),b=g.X(l.b);svg.append(svgEl('line',{x1:a,y1:y-34,x2:b,y2:y-34,class:'load-arrow udl'}));const count=Math.max(2,Math.floor((b-a)/26));for(let i=0;i<=count;i++){const x=a+(b-a)*i/count;svg.append(svgEl('line',{x1:x,y1:y-32,x2:x,y2:y-7,class:'load-arrow udl'}));svg.append(svgEl('path',{d:`M ${x-3.5} ${y-13} L ${x} ${y-7} L ${x+3.5} ${y-13}`,class:'load-arrow udl'}));}svg.append(svgEl('text',{x:(a+b)/2,y:y-39,'text-anchor':'middle',class:'load-text udl'},`${fmt(l.q*unit().lenToM/unit().forceToN,1)} ${unit().line}`));}});
+    svg.append(svgEl('text',{x:x0,y:g.H-6,'text-anchor':'middle',class:'tick'},'0'));svg.append(svgEl('text',{x:x1,y:g.H-6,'text-anchor':'middle',class:'tick'},`${fmt(s.L/unit().lenToM,2)} ${unit().length}`));
+  }
+  function drawCurve(svg,L,xs,ys,label,factor,screenDown=false){
+    const g=plotBase(svg,L),vals=ys.map(v=>v*factor),min=Math.min(0,...vals),max=Math.max(0,...vals),range=Math.max(max-min,1e-9),low=min-range*.12,high=max+range*.12,Y=v=>g.top+(screenDown?(v-low):(high-v))/(high-low)*g.ph,zero=Y(0);svg.append(svgEl('line',{x1:g.left,y1:zero,x2:g.left+g.pw,y2:zero,class:'zero'}));
+    for(let i=0;i<=4;i++){const v=low+(high-low)*i/4;svg.append(svgEl('text',{x:g.left-7,y:Y(v)+3,'text-anchor':'end',class:'tick'},fmt(v,2)));}
+    let path='';for(let i=0;i<xs.length;i++)path+=(i?' L ':'M ')+g.X(xs[i])+' '+Y(vals[i]);svg.append(svgEl('path',{d:`${path} L ${g.X(xs.at(-1))} ${zero} L ${g.X(xs[0])} ${zero} Z`,class:'area'}));svg.append(svgEl('path',{d:path,class:'curve'}));svg.append(svgEl('text',{x:4,y:g.top+8,class:'plot-label'},label));
+  }
+  function renderReactions(s,sol){
+    const rows=$('reaction-rows');rows.replaceChildren();sol.reactions.forEach((r,i)=>{const tr=document.createElement('tr');const vals=[String.fromCharCode(65+i),r.type,`${fmt(r.x/unit().lenToM,2)} ${unit().length}`,`${fmt(r.R/unit().forceToN,2)} ${unit().force}`,r.type==='fixed'?`${fmt(r.C/(unit().forceToN*unit().lenToM),2)} ${unit().moment}`:'—'];vals.forEach((v,j)=>{const td=document.createElement('td');td.textContent=v;if(j===1)td.className='reaction-type';tr.append(td);});rows.append(tr);});
+  }
+  function analyze(){
+    const error=$('error');error.classList.remove('show');
+    try{
+      const s=validate(),res=calculate(s),maxV=Math.max(...res.V.map(Math.abs)),maxM=Math.max(...res.M.map(Math.abs)),iMax=res.y.reduce((best,v,i)=>Math.abs(v)>Math.abs(res.y[best])?i:best,0),maxY=Math.abs(res.y[iMax]);
+      $('max-shear').innerHTML=`${fmt(maxV/unit().forceToN,2)} <span class="metric-unit">${unit().force}</span>`;$('max-moment').innerHTML=`${fmt(maxM/(unit().forceToN*unit().lenToM),2)} <span class="metric-unit">${unit().moment}</span>`;$('max-deflection').innerHTML=`${fmt(maxY*unit().deflectionFromM,3)} <span class="metric-unit">${unit().deflection}</span>`;
+      $('shear-peak').textContent=`Peak |V| ${fmt(maxV/unit().forceToN,2)} ${unit().force}`;$('moment-peak').textContent=`Peak |M| ${fmt(maxM/(unit().forceToN*unit().lenToM),2)} ${unit().moment}`;$('deflection-peak').textContent=`${fmt(maxY*unit().deflectionFromM,3)} ${unit().deflection} ${res.y[iMax]>=0?'down':'up'} at x = ${fmt(res.x[iMax]/unit().lenToM,2)} ${unit().length}`;
+      drawBeam(s,res);renderReactions(s,res);drawCurve($('shear-plot'),s.L,res.x,res.V,`V (${unit().force})`,1/unit().forceToN);drawCurve($('moment-plot'),s.L,res.x,res.M,`M (${unit().moment})`,1/(unit().forceToN*unit().lenToM));drawCurve($('deflection-plot'),s.L,res.x,res.y,`δ (${unit().deflection}; downward positive)`,unit().deflectionFromM,true);
+    }catch(e){error.textContent=e.message;error.classList.add('show');}
+  }
+  $('analyze').addEventListener('click',analyze);
+  $('unit-system').value=system;applyUnitLabels();supportList.innerHTML='';loadList.innerHTML='<div class="empty-loads">No loads yet. Add a point or distributed load.</div>';
+  analyze();
+})();
+</script>
+</body>
+</html>
